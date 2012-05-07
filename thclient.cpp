@@ -17,23 +17,19 @@ void thclient::run()
     {
         while(1)
         {
-            while(Serveur.waitForReadyRead())
-            {
+            Serveur.waitForReadyRead(500);
+
                 BARec.append(Serveur.read(Serveur.bytesAvailable()));
                 if(BARec.left(1)=="h")
                 {
                     emit (updatetime(BARec));
-                    Serveur.write("h");
+                    emit (updatecouleur(BARec));
                 }
 
                 else if (BARec.left(1)=="n")
                     emit (updatenouvelles(BARec));
-                else
-                {
-                    emit (updatecouleur(BARec));
-                    Serveur.write("c");
-                }
-            }
+                BARec.clear();
+
         }
 
         Serveur.disconnectFromHost();

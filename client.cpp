@@ -19,7 +19,8 @@ Client::~Client()
 
 void Client::MAJTime(QByteArray Temps)
 {
-    QString Stemps = Temps.right(8);
+    QString Stemps = Temps.left(9);
+    Stemps = Stemps.remove(0,1);
     ui->lblHeure->setText(Stemps);
 }
 
@@ -30,7 +31,7 @@ void Client::MAJNouvelles(QByteArray Nouvelles)
 
 void Client::MAJCouleur(QByteArray Couleur)
 {
-    this->setPalette(QColor((uchar)Couleur[1],(uchar)Couleur[2],(uchar)Couleur[3]));
+    this->setPalette(QColor((uchar)Couleur[10],(uchar)Couleur[11],(uchar)Couleur[12]));
 }
 
 void Client::on_btnConnecter_clicked()
