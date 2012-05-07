@@ -21,11 +21,18 @@ void thclient::run()
             {
                 BARec.append(Serveur.read(Serveur.bytesAvailable()));
                 if(BARec.left(1)=="h")
+                {
                     emit (updatetime(BARec));
+                    Serveur.write("h");
+                }
+
                 else if (BARec.left(1)=="n")
                     emit (updatenouvelles(BARec));
                 else
+                {
                     emit (updatecouleur(BARec));
+                    Serveur.write("c");
+                }
             }
         }
 
