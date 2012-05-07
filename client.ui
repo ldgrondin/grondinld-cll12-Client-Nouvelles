@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1070</width>
-    <height>734</height>
+    <height>780</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>450</y>
+      <y>500</y>
       <width>1051</width>
       <height>221</height>
      </rect>
@@ -61,6 +61,32 @@
      <url>
       <string>about:blank</string>
      </url>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnConnecter">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>450</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Se connecter</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblHeure">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>460</y>
+      <width>61</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Heure</string>
     </property>
    </widget>
   </widget>

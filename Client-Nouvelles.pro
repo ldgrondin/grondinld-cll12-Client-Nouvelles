@@ -4,15 +4,17 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network webkit xml
 
 TARGET = Client-Nouvelles
 TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        client.cpp
+        client.cpp \
+    thclient.cpp
 
-HEADERS  += client.h
+HEADERS  += client.h \
+    thclient.h
 
 FORMS    += client.ui
