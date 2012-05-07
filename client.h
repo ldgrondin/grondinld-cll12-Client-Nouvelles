@@ -21,9 +21,11 @@ private slots:
     void on_btnConnecter_clicked();
     void MAJTime(QByteArray);
     void MAJNouvelles(QByteArray);
+    void MAJCouleur(QByteArray);
 
 private:
     Ui::Client *ui;
+    thclient *m_threadClient;
 
 };
 

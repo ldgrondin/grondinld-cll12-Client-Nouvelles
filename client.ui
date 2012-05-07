@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Client</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTreeWidget" name="TW">
     <property name="geometry">
@@ -87,6 +90,19 @@
     </property>
     <property name="text">
      <string>Heure</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txtIP">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>460</y>
+      <width>113</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>172.16.16.1</string>
     </property>
    </widget>
   </widget>
