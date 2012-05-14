@@ -28,7 +28,10 @@ void Client::MAJTime(QByteArray Temps)
 
 void Client::MAJNouvelles(QByteArray Nouvelles)
 {
-    QUrl url(Nouvelles);
+    QString adresse;
+    adresse = Nouvelles.remove(0,1);
+    //QMessageBox::information(this,"Test",adresse);
+    QUrl url(adresse);
 
     //Connection au signal RSS
     http.setHost(url.host());

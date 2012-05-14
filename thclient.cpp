@@ -27,6 +27,7 @@ void thclient::run()
             if(Send)
             {
                 Serveur.write(SendArray);
+                Serveur.waitForBytesWritten(100);
                 Send=false;
             }
             Serveur.waitForReadyRead(500);
@@ -38,9 +39,12 @@ void thclient::run()
                     emit (updatecouleur(BARec));
                 }
 
-                else if (BARec.left(1)=="n")
+                if (BARec.left(1)=="n")
+                {
                     emit (updatenouvelles(BARec));
+                }
                 BARec.clear();
+                Serveur.write("#");
 
         }
 
