@@ -89,7 +89,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Heure</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLineEdit" name="txtIP">
