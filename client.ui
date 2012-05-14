@@ -102,7 +102,70 @@
      </rect>
     </property>
     <property name="text">
-     <string>172.16.16.1</string>
+     <string>172.16.5.1</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cbtype">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>460</y>
+      <width>181</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Actualités</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Environnement</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Voyage</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Insolite</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Sports</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Rima Elkouri</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Europe</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Bruno Blanchet</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="btnrafraichir">
+    <property name="geometry">
+     <rect>
+      <x>940</x>
+      <y>460</y>
+      <width>83</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Rafraîchir</string>
     </property>
    </widget>
   </widget>

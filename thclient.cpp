@@ -5,6 +5,12 @@ thclient::thclient(QObject *parent) :
 {
 }
 
+void thclient::changenouvelles(QByteArray valeur)
+{
+    SendArray = valeur;
+    Send=true;
+}
+
 void thclient::run()
 {
 
@@ -15,8 +21,14 @@ void thclient::run()
 
     if(Serveur.waitForConnected(2000))
     {
+
         while(1)
         {
+            if(Send)
+            {
+                Serveur.write(SendArray);
+                Send=false;
+            }
             Serveur.waitForReadyRead(500);
 
                 BARec.append(Serveur.read(Serveur.bytesAvailable()));

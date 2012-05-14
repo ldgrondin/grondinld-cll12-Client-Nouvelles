@@ -14,6 +14,9 @@ public:
 protected:
     void run();
 
+private slots:
+    void changenouvelles(QByteArray);
+
 signals:
     void updatetime(QByteArray);
     void updatenouvelles(QByteArray);
@@ -21,6 +24,9 @@ signals:
     
 public slots:
     
+private:
+    QByteArray SendArray;
+    bool Send;
 };
 
 #endif // THCLIENT_H

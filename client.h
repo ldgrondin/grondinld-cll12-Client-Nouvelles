@@ -16,12 +16,16 @@ class Client : public QMainWindow
 public:
     explicit Client(QWidget *parent = 0);
     ~Client();
+signals:
+    void MAJNouvelle(QByteArray);
     
 private slots:
     void on_btnConnecter_clicked();
     void MAJTime(QByteArray);
     void MAJNouvelles(QByteArray);
     void MAJCouleur(QByteArray);
+
+    void on_btnrafraichir_clicked();
 
 private:
     Ui::Client *ui;

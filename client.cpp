@@ -10,6 +10,7 @@ Client::Client(QWidget *parent) :
     connect(m_threadClient, SIGNAL(updatetime(QByteArray)), this, SLOT(MAJTime(QByteArray)));
     connect(m_threadClient, SIGNAL(updatenouvelles(QByteArray)), this, SLOT(MAJNouvelles(QByteArray)));
     connect(m_threadClient, SIGNAL(updatecouleur(QByteArray)), this, SLOT(MAJCouleur(QByteArray)));
+    connect(this,SIGNAL(MAJNouvelle(QByteArray)),m_threadClient,SLOT(changenouvelles(QByteArray)));
 }
 
 Client::~Client()
@@ -36,6 +37,20 @@ void Client::MAJCouleur(QByteArray Couleur)
 
 void Client::on_btnConnecter_clicked()
 {
+   QByteArray type;
+   int Ntype;
    m_threadClient->m_IP = ui->txtIP->text();
    m_threadClient->start();
+   Ntype = ui->cbtype->currentIndex();
+   type = QByteArray::number(Ntype);
+   emit MAJNouvelle(type);
+}
+
+void Client::on_btnrafraichir_clicked()
+{
+    QByteArray type;
+    int Ntype;
+    Ntype = ui->cbtype->currentIndex();
+    type = QByteArray::number(Ntype);
+    emit MAJNouvelle(type);
 }
