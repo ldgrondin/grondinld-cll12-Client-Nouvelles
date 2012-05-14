@@ -4,6 +4,11 @@
 #include <QMainWindow>
 #include "thclient.h"
 #include <QTcpSocket>
+#include <QtWebKit>
+#include <QTreeWidgetItem>
+#include <QMessageBox>
+#include <QTreeWidget>
+#include <QList>
 
 namespace Ui {
 class Client;
@@ -24,12 +29,26 @@ private slots:
     void MAJTime(QByteArray);
     void MAJNouvelles(QByteArray);
     void MAJCouleur(QByteArray);
-
     void on_btnrafraichir_clicked();
+    void on_TW_itemActivated(QTreeWidgetItem *item);
+
+public slots:
+    void parseXml();
+    void readData(const QHttpResponseHeader &resp);
 
 private:
     Ui::Client *ui;
     thclient *m_threadClient;
+
+    //Pour RSS
+    int connectionId;
+    QXmlStreamReader xml;
+    QHttp http;
+    QString currentTag;
+    QString linkString;
+    QString titleString;
+    QString dateString;
+    QTreeWidgetItem *feed;
 
 };
 
