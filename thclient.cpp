@@ -8,6 +8,7 @@ thclient::thclient(QObject *parent) :
 void thclient::changenouvelles(QByteArray valeur)
 {
     SendArray = valeur;
+
     Send=true;
 }
 
@@ -19,15 +20,14 @@ void thclient::run()
 
     Serveur.connectToHost(m_IP,60123);
 
-    if(Serveur.waitForConnected(2000))
+    if(Serveur.waitForConnected(1000))
     {
 
         while(1)
         {
-            if(Send)
+            if(Send==true)
             {
                 Serveur.write(SendArray);
-                Serveur.waitForBytesWritten(100);
                 Send=false;
             }
             Serveur.waitForReadyRead(500);
@@ -37,14 +37,17 @@ void thclient::run()
                 {
                     emit (updatetime(BARec));
                     emit (updatecouleur(BARec));
+
                 }
 
                 if (BARec.left(1)=="n")
                 {
                     emit (updatenouvelles(BARec));
+
                 }
                 BARec.clear();
-                Serveur.write("#");
+                if(Send==false)
+                    Serveur.write("#");
 
         }
 

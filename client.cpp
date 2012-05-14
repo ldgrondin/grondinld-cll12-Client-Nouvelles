@@ -32,7 +32,6 @@ void Client::MAJNouvelles(QByteArray Nouvelles)
     adresse = Nouvelles.remove(0,1);
     //QMessageBox::information(this,"Test",adresse);
     QUrl url(adresse);
-
     //Connection au signal RSS
     http.setHost(url.host());
     connectionId = http.get(url.path());
@@ -58,8 +57,11 @@ void Client::on_btnrafraichir_clicked()
 {
     QByteArray type;
     int Ntype;
+    ui->TW->clear();
+    xml.clear();
     Ntype = ui->cbtype->currentIndex();
     type = QByteArray::number(Ntype);
+    //QMessageBox::information(this,"Test",type);
     emit MAJNouvelle(type);
 }
 
@@ -74,10 +76,10 @@ void Client::readData(const QHttpResponseHeader &resp)
     //Lis le contenu du signal RSS
      if (resp.statusCode() != 200)
          http.abort();
-     else {
+   else {
          xml.addData(http.readAll());
          parseXml();
-     }
+        }
 
  }
 //Addition et affichage dans l'arbre des nouvelles
