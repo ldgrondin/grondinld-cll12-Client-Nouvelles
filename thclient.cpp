@@ -5,7 +5,7 @@ thclient::thclient(QObject *parent) :
 {
 }
 
-void thclient::changenouvelles(QByteArray valeur)
+void thclient::changenouvelles(QByteArray valeur)//slot du refresh
 {
     SendArray = valeur;
 
@@ -25,7 +25,7 @@ void thclient::run()
 
         while(1)
         {
-            if(Send==true)
+            if(Send==true)//envoie de la demande de refresh au serveur
             {
                 Serveur.write(SendArray);
                 Send=false;
@@ -33,7 +33,7 @@ void thclient::run()
             Serveur.waitForReadyRead(500);
 
                 BARec.append(Serveur.read(Serveur.bytesAvailable()));
-                if(BARec.left(1)=="h")
+                if(BARec.left(1)=="h")//envoie des signaux lors de la reception de la trame correspondante
                 {
                     emit (updatetime(BARec));
                     emit (updatecouleur(BARec));
@@ -47,7 +47,7 @@ void thclient::run()
                 }
                 BARec.clear();
                 if(Send==false)
-                    Serveur.write("#");
+                    Serveur.write("#");//envoie du caractere de reception au serveur
 
         }
 

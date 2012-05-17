@@ -7,11 +7,11 @@ Client::Client(QWidget *parent) :
 {
     ui->setupUi(this);
     m_threadClient = new thclient();
-    connect(m_threadClient, SIGNAL(updatetime(QByteArray)), this, SLOT(MAJTime(QByteArray)));
-    connect(m_threadClient, SIGNAL(updatenouvelles(QByteArray)), this, SLOT(MAJNouvelles(QByteArray)));
-    connect(m_threadClient, SIGNAL(updatecouleur(QByteArray)), this, SLOT(MAJCouleur(QByteArray)));
-    connect(this,SIGNAL(MAJNouvelle(QByteArray)),m_threadClient,SLOT(changenouvelles(QByteArray)));
-    connect(&http, SIGNAL(readyRead(const QHttpResponseHeader &)), this,SLOT(readData(const QHttpResponseHeader &)));
+    connect(m_threadClient, SIGNAL(updatetime(QByteArray)), this, SLOT(MAJTime(QByteArray)));// connect pour l'heure
+    connect(m_threadClient, SIGNAL(updatenouvelles(QByteArray)), this, SLOT(MAJNouvelles(QByteArray)));//connect pour le refresh
+    connect(m_threadClient, SIGNAL(updatecouleur(QByteArray)), this, SLOT(MAJCouleur(QByteArray)));//connect pour les couleurs
+    connect(this,SIGNAL(MAJNouvelle(QByteArray)),m_threadClient,SLOT(changenouvelles(QByteArray)));//connect pour l'es liens RSS'affichage des nouvelles
+    connect(&http, SIGNAL(readyRead(const QHttpResponseHeader &)), this,SLOT(readData(const QHttpResponseHeader &)));//connect pour lire le .xml
 }
 
 Client::~Client()
@@ -19,25 +19,24 @@ Client::~Client()
     delete ui;
 }
 
-void Client::MAJTime(QByteArray Temps)
+void Client::MAJTime(QByteArray Temps)//slot pour la mise a jour du temps
 {
     QString Stemps = Temps.left(9);
     Stemps = Stemps.remove(0,1);
     ui->lblHeure->setText(Stemps);
 }
 
-void Client::MAJNouvelles(QByteArray Nouvelles)
+void Client::MAJNouvelles(QByteArray Nouvelles)//slot pour la mise a jour des nouvelles
 {
     QString adresse;
     adresse = Nouvelles.remove(0,1);
-    //QMessageBox::information(this,"Test",adresse);
     QUrl url(adresse);
     //Connection au signal RSS
     http.setHost(url.host());
     connectionId = http.get(url.path());
 }
 
-void Client::MAJCouleur(QByteArray Couleur)
+void Client::MAJCouleur(QByteArray Couleur)//slot pour la mise a jour des couleurs
 {
     this->setPalette(QColor((uchar)Couleur[10],(uchar)Couleur[11],(uchar)Couleur[12]));
 }
@@ -61,11 +60,10 @@ void Client::on_btnrafraichir_clicked()
     xml.clear();
     Ntype = ui->cbtype->currentIndex();
     type = QByteArray::number(Ntype);
-    //QMessageBox::information(this,"Test",type);
     emit MAJNouvelle(type);
 }
 
-void Client::on_TW_itemActivated(QTreeWidgetItem *item)
+void Client::on_TW_itemActivated(QTreeWidgetItem *item)//ouvrir le lien rss dans le webviewer lorsque cliqué
 {
     ui->WV->load(QUrl(item->text(2)));
     ui->WV->show();
